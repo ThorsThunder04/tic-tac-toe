@@ -62,7 +62,7 @@ def main():
 
 
     print('\nThe starting player is X.')
-    print('You must enter the correct cordinates to place your symbol.')
+    print('You must enter the correct coordinates to place your symbol.')
     print('Have fun!')
 
 
@@ -102,20 +102,25 @@ def main():
             symbolCoord = input('Enter your symbole coordinate (ex: a2) : ').lower()
             
             #updates the grid
-            if (symbolCoord[0] in coordDict) and (symbolCoord[1] in coordDict) and (currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] == ' '):
-                if (playerTurn == 'X'):
-                    currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] = 'X'
-                    playerTurn = 'O' #switches the player's turn
+            if (len(symbolCoord) != 0):
+                if (symbolCoord[0] in coordDict) and (symbolCoord[1] in coordDict) and (currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] == ' '):
+                    if (playerTurn == 'X'):
+                        currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] = 'X'
+                        playerTurn = 'O' #switches the player's turn
+                    
+                    elif (playerTurn == 'O'):
+                        currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] = 'O'
+                        playerTurn = 'X' #switches the player's turn
                 
-                elif (playerTurn == 'O'):
-                    currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] = 'O'
-                    playerTurn = 'X' #switches the player's turn
-            else:
-                #if a player enters an invalid coordinate
-                print('Sorry that is not a valid coordinate')
-                input('Press Enter to try again...')
-                clear()
-                continue
+                #makes sure there is an input
+                elif len(symbolCoord) == 0:
+                    continue
+                else:
+                    #if a player enters an invalid coordinate
+                    print('Sorry that is not a valid coordinate')
+                    input('Press Enter to try again...')
+                    clear()
+                    continue
 
             clear()
 
