@@ -129,8 +129,9 @@ main()
 #asks if player wants to play again
 keepPlaying = True
 while keepPlaying:
+    print(' ')
     print('Would you like to play again?')
-    choice = input('\ny for yes, n for no :')
+    choice = input('y for yes, n for no :')
     if choice == 'y':
         main()
     elif choice == 'n':
