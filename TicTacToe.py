@@ -48,8 +48,8 @@ def main():
 
     currentBoard = [
         [" ", " ", " "],
-        [" ", "O", " "],
-        ["O", " ", " "],
+        [" ", " ", " "],
+        [" ", " ", " "],
     ]
 
     #conversion for the coordinates
