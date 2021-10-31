@@ -110,7 +110,7 @@ def main():
             symbolCoord = input('Enter your symbole coordinate (ex: a2) : ').lower()
             
             #updates the grid
-            if (len(symbolCoord) != 0):
+            if (len(symbolCoord) == 2):
                 if (symbolCoord[0] in coordDict) and (symbolCoord[1] in coordDict) and (currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] == ' '):
                     if (playerTurn == 'X'):
                         currentBoard[coordDict[symbolCoord[0]]][coordDict[symbolCoord[1]]] = 'X'
