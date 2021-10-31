@@ -24,21 +24,29 @@ def check_winner(board):
         #check's all the columns for a winner
         def check_columns():
             transposed_board = [[row[i] for row in board] for i in range(len(board[0]))]
-            check_rows(transposed_board)
+            return check_rows(transposed_board)
         
         def check_diagonals():
             if len(set([board[0][0], board[1][1], board[2][2]])) == 1:
                 return board[1][1]
             elif len(set([board[0][2], board[1][1], board[2][0]])) == 1:
                 return board[1][1]
-                
+
+        # checks if there are any more empty spaces and if there are no winners
+        def checkDraw():
+            emptyCoutner = 0
+            for row in board:
+                if ' ' not in row:
+                    emptyCoutner += 1
+            if emptyCoutner == 3:
+                return 'DRAW'
 
         if (check_rows(board) == "X") or (check_columns() == "X") or (check_diagonals() == 'X'):
             return 'X'
         elif (check_rows(board) == 'O') or (check_columns() == 'O') or (check_diagonals() == 'O'):
             return 'O'
-
-
+        elif (checkDraw() == 'DRAW'):
+            return checkDraw()
 
 def main():
 
@@ -46,7 +54,7 @@ def main():
 
 
 
-    currentBoard = [
+    currentBoard = [ # holds the board
         [" ", " ", " "],
         [" ", " ", " "],
         [" ", " ", " "],
@@ -73,10 +81,10 @@ def main():
 
     playerTurn = 'X'
     # starts the game proccess
-    while (winner != 'X') or (winner != 'O'):
+    while (winner != 'X') or (winner != 'O') or (winner != 'DRAW'):
         
         #checks for a winner
-        if (check_winner(currentBoard) == 'X') or (check_winner(currentBoard) == 'O'):
+        if (check_winner(currentBoard) == 'X') or (check_winner(currentBoard) == 'O') or (check_winner(currentBoard) == 'DRAW'):
             winner = check_winner(currentBoard)
             break
 
@@ -124,8 +132,24 @@ def main():
 
             clear()
 
+    
     print(' ')
-    print('Congrats, the winner of the game is player', winner, '!!!')
+
+    # displays the baord at the end of the game
+    print(' ' + currentBoard[0][0]+' | '+currentBoard[0][1]+' | '+currentBoard[0][2])
+    print('-----------')
+    print(' ' + currentBoard[1][0]+' | '+currentBoard[1][1]+' | '+currentBoard[1][2])
+    print('-----------')
+    print(' ' + currentBoard[2][0]+' | '+currentBoard[2][1]+' | '+currentBoard[2][2])
+
+
+    print(' ')
+
+    # prints the winner message
+    if (winner == 'DRAW'):
+        print("The game was a draw, nobody won.")
+    else:
+        print('Congrats, the winner of the game is player', winner, '!!!')
 
 clear()
 
